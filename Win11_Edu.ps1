@@ -22,8 +22,6 @@ $Global:MyOSDCloud = [ordered]@{
 #Launch OSDCloud
 Write-Host "Starting OSDCloud" -ForegroundColor Green
 
-Write-Host -ForegroundColor Green "Updating OSD Powershell Module"
-Install-Module OSD -Force
 Write-Host -ForegroundColor Green "Importing OSD Powershell Module"
 Import-Module OSD -Force
 
