@@ -19,11 +19,5 @@ $Global:MyOSDCloud = [ordered]@{
     CheckSHA1 = [bool]$true
 }
 
-#Launch OSDCloud
-Write-Host "Starting OSDCloud" -ForegroundColor Green
-
-Write-Host -ForegroundColor Green "Importing OSD Powershell Module"
-Import-Module OSD -Force
-
 Write-Host "Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage"
 Start-OSDCloudGUI
