@@ -7,16 +7,16 @@ $OSLanguage = 'en-us'
 #Set Global OSDCloud Vars
 $Global:MyOSDCloud = [ordered]@{
     Restart = [bool]$False
-    RecoveryPartition = [bool]$true
+    RecoveryPartition = [bool]$True
     OEMActivation = [bool]$True
-    WindowsUpdate = [bool]$true
-    WindowsUpdateDrivers = [bool]$true
-    WindowsDefenderUpdate = [bool]$true
-    SetTimeZone = [bool]$true
+    WindowsUpdate = [bool]$True
+    WindowsUpdateDrivers = [bool]$True
+    WindowsDefenderUpdate = [bool]$True
+    SetTimeZone = [bool]$True
     ClearDiskConfirm = [bool]$False
     ShutdownSetupComplete = [bool]$false
-    SyncMSUpCatDriverUSB = [bool]$true
-    CheckSHA1 = [bool]$true
+    SyncMSUpCatDriverUSB = [bool]$True
+    CheckSHA1 = [bool]$True
 }
 
 Write-Host "Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage"
