@@ -6,6 +6,8 @@ $OSLanguage = 'en-us'
 
 #Set Global OSDCloud Vars
 $Global:MyOSDCloud = [ordered]@{
+    BrandName = "AIE OSDCloud"
+    BrandColor = "#0096FF"
     Restart = [bool]$False
     RecoveryPartition = [bool]$True
     OEMActivation = [bool]$True
