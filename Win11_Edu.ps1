@@ -25,5 +25,5 @@ Write-Host "Starting OSDCloud" -ForegroundColor Green
 Write-Host -ForegroundColor Green "Importing OSD Powershell Module"
 Import-Module OSD -Force
 
-#write-host "Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage"
-#Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
+Write-Host "Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage"
+Start-OSDCloudGui -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
