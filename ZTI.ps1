@@ -1,13 +1,34 @@
 # Largely taken from https://github.com/jbedrech/WinPE_Autopilot/tree/main
-Write-Host "Autopilot Device Registration Version 0.1"
+Write-Host "Autopilot Device Registration & Windows ZTI v1.0"
 
-# Config
+# --- Config ---
 $GroupTag = "OSDCloud"
 $TimeServerUrl = "time.cloudflare.com"
 $OutputFile = "X:\AutopilotHash.csv"
 $TenantID = [Environment]::GetEnvironmentVariable('OSDCloudAPTenantID','Machine') # $env:OSDCloudAPTenantID doesn't work within WinPe
 $AppID = [Environment]::GetEnvironmentVariable('OSDCloudAPAppID','Machine')
 $AppSecret = [Environment]::GetEnvironmentVariable('OSDCloudAPAppSecret','Machine')
+$OSName = 'Windows 11 23H2 x64'
+$OSEdition = 'Education'
+$OSActivation = 'Retail'
+$OSLanguage = 'en-us'
+$Global:MyOSDCloud = [ordered]@{
+    BrandName = "AIE OSDCloud"
+    BrandColor = "#0096FF"
+    Restart = [bool]$False
+    RecoveryPartition = [bool]$True
+    OEMActivation = [bool]$True
+    WindowsUpdate = [bool]$True
+    WindowsUpdateDrivers = [bool]$True
+    WindowsDefenderUpdate = [bool]$True
+    SetTimeZone = [bool]$True
+    ClearDiskConfirm = [bool]$False
+    ShutdownSetupComplete = [bool]$false
+    SyncMSUpCatDriverUSB = [bool]$True
+    CheckSHA1 = [bool]$True
+}
+
+# --- END CONFIG ---
 
 # Set the time
 $DateTime = (Invoke-WebRequest -Uri $TimeServerUrl -UseBasicParsing).Headers.Date
@@ -61,9 +82,6 @@ If (Test-Path $PSScriptRoot\OA3.xml)
 	$computers | Select "Device Serial Number", "Windows Product ID", "Hardware Hash", "Group Tag" | ConvertTo-CSV -NoTypeInformation | % {$_ -replace '"',''} | Out-File $OutputFile
 }
 
-# Upload the hash
-Start-Sleep 30
-
 #Get Modules needed for Installation
 #PSGallery Support
 Invoke-Expression(Invoke-RestMethod sandbox.osdcloud.com)
@@ -74,3 +92,10 @@ Connect-MSGraphApp -Tenant $TenantId -AppId $AppId -AppSecret $AppSecret
 
 #Import Autopilot CSV to Tenant
 Import-AutoPilotCSV -csvFile $OutputFile
+
+# Upload the hash
+Start-Sleep 10
+
+# Windows ZTI
+Write-Host "Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage"
+Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
