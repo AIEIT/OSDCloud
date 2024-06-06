@@ -20,9 +20,8 @@ $Global:MyOSDCloud = [ordered]@{
     SyncMSUpCatDriverUSB = [bool]$True
     CheckSHA1 = [bool]$True
 }
-Write-Host "Version 0.3 by MP"
-Start-Sleep 5
+Write-Host "Version 0.4 by MP"
+Start-Sleep 2
 
 Write-Host "Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage"
-Start-Sleep 5
 Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
