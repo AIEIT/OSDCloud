@@ -5,9 +5,9 @@ Write-Host "Autopilot Device Registration Version 0.1"
 $GroupTag = "OSDCloud"
 $TimeServerUrl = "time.cloudflare.com"
 $OutputFile = "X:\AutopilotHash.csv"
-$TenantID = $Env:OSDCloudAPTenantID
-$AppID= $Env:OSDCloudAPAppID
-$AppSecret = $Env:OSDCloudAPAppSecret
+$TenantID = [Environment]::GetEnvironmentVariable('OSDCloudAPTenantID','Machine') # $env:OSDCloudAPTenantID doesn't work within WinPe
+$AppID = [Environment]::GetEnvironmentVariable('OSDCloudAPAppID','Machine')
+$AppSecret = [Environment]::GetEnvironmentVariable('OSDCloudAPAppSecret','Machine')
 
 # Set the time
 $DateTime = (Invoke-WebRequest -Uri $TimeServerUrl -UseBasicParsing).Headers.Date
