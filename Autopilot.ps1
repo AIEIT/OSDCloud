@@ -16,10 +16,13 @@ Set-Date -Date $DateTime
 # Download required files
 $oa3tool = 'https://raw.githubusercontent.com/AIEIT/OSDCloud/main/oa3tool.exe'
 $pcpksp = 'https://raw.githubusercontent.com/AIEIT/OSDCloud/main/PCPKsp.dll'
+$inputxml = 'https://raw.githubusercontent.com/AIEIT/OSDCloud/main/input.xml'
+$oa3cfg = 'https://raw.githubusercontent.com/AIEIT/OSDCloud/main/OA3.cfg'
 
 Invoke-WebRequest $oa3tool -OutFile $PSScriptRoot\oa3tool.exe
 Invoke-WebRequest $pcpksp -OutFile X:\Windows\System32\PCPKsp.dll
-
+Invoke-WebRequest $inputxml -OutFile $PSScriptRoot\input.xml
+Invoke-WebRequest $oa3cfg -OutFile $PSScriptRoot\OA3.cfg
 
 # Create OA3 Hash
 If((Test-Path X:\Windows\System32\wpeutil.exe) -and (Test-Path X:\Windows\System32\PCPKsp.dll))
