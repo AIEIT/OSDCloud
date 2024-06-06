@@ -23,9 +23,6 @@ $Global:MyOSDCloud = [ordered]@{
 Write-Host "Version 0.3 by MP"
 Start-Sleep 5
 
-Write-Host "Autopilot registering this device and uploading hash"
-start /wait PowerShell -NoL -C Invoke-WebPSScript 'https://raw.githubusercontent.com/AIEIT/OSDCloud/main/Autopilot.ps1'
-
 Write-Host "Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage"
 Start-Sleep 5
 Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
