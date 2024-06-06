@@ -5,9 +5,9 @@ Write-Host "Autopilot Device Registration Version 0.1"
 $GroupTag = "OSDCloud"
 $TimeServerUrl = "time.cloudflare.com"
 $OutputFile = "X:\AutopilotHash.csv"
-$TenantID = $Env:TenantID
-$AppID= $Env:AppID
-$AppSecret = $Env:AppSecret
+$TenantID = $Env:OSDCloudAPTenantID
+$AppID= $Env:OSDCloudAPAppID
+$AppSecret = $Env:OSDCloudAPAppSecret
 
 # Set the time
 $DateTime = (Invoke-WebRequest -Uri $TimeServerUrl -UseBasicParsing).Headers.Date
