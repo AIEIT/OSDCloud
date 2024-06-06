@@ -5,18 +5,25 @@ Write-Host "Autopilot Device Registration Version 0.1"
 $GroupTag = "OSDCloud"
 $TimeServerUrl = "time.cloudflare.com"
 $OutputFile = "X:\AutopilotHash.csv"
-$TenantID = "your Azure Tenant ID goes here"
-$AppID= "your AppID goes here"
-$AppSecret = "your AppSecret goes here"
+$TenantID = ""
+$AppID= ""
+$AppSecret = ""
 
 # Set the time
 $DateTime = (Invoke-WebRequest -Uri $TimeServerUrl -UseBasicParsing).Headers.Date
 Set-Date -Date $DateTime
 
+# Download required files
+$oa3tool = 'https://raw.githubusercontent.com/AIEIT/OSDCloud/main/oa3tool.exe'
+$pcpksp = 'https://raw.githubusercontent.com/AIEIT/OSDCloud/main/PCPKsp.dll'
+
+Invoke-WebRequest $oa3tool -OutFile $PSScriptRoot\oa3tool.exe
+Invoke-WebRequest $pcpksp -OutFile X:\Windows\System32\PCPKsp.dll
+
+
 # Create OA3 Hash
-If((Test-Path X:\Windows\System32\wpeutil.exe) -and (Test-Path $PSScriptRoot\PCPKsp.dll))
+If((Test-Path X:\Windows\System32\wpeutil.exe) -and (Test-Path X:\Windows\System32\PCPKsp.dll))
 {
-	Copy-Item "$PSScriptRoot\PCPKsp.dll" "X:\Windows\System32\PCPKsp.dll"
 	#Register PCPKsp
 	rundll32 X:\Windows\System32\PCPKsp.dll,DllInstall
 }
@@ -57,7 +64,7 @@ Start-Sleep 30
 #Get Modules needed for Installation
 #PSGallery Support
 Invoke-Expression(Invoke-RestMethod sandbox.osdcloud.com)
-Install-module WindowsAutoPilotIntune -SkipPublisherCheck -Force
+Install-Module WindowsAutoPilotIntune -SkipPublisherCheck -Force
 
 #Connection
 Connect-MSGraphApp -Tenant $TenantId -AppId $AppId -AppSecret $AppSecret
