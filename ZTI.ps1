@@ -84,7 +84,7 @@ If (Test-Path $PSScriptRoot\OA3.xml)
 
 #Get Modules needed for Installation
 #PSGallery Support
-Invoke-Expression(Invoke-RestMethod sandbox.osdcloud.com)
+# Invoke-Expression(Invoke-RestMethod sandbox.osdcloud.com)
 Install-Module WindowsAutoPilotIntune -SkipPublisherCheck -Force
 
 #Connection
